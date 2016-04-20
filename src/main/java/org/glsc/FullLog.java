@@ -32,7 +32,7 @@ public class FullLog {
 ////        conf.set("spark.executor.memory", "4g");
         /** 这里配置driver memory 没用*/
 //        conf.set("spark.driver.memory", "2g");
-        conf.setSparkHome("D:\\App\\spark-1.6.0");
+        conf.setSparkHome("D:\\temp");
         conf.setMaster("local[4]");
         JavaSparkContext sc = new JavaSparkContext(conf);
 
@@ -54,7 +54,6 @@ public class FullLog {
                 countList.add(file.getAbsolutePath() + ":" + times);
             }
         } else {
-            for (int i = 0; i< 5; i++) {
                 JavaRDD<String> cache =
                     sc.textFile(logFiles.getAbsolutePath()).cache();
             long tmp = cache.filter(new FindItFunction(words)).count();
@@ -62,8 +61,7 @@ public class FullLog {
 
             logger.info("FILE: {} finds {}.", logFiles.getAbsolutePath() , tmp);
             countList.add(logFiles.getAbsolutePath() + ":" + times);
-            }
-            
+
         }
         logger.info("list: {}.", countList.size());
         logger.info("Occur times: {}.", times);
