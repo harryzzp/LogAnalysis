@@ -20,9 +20,9 @@ public class FindItFunction implements Function<String, Boolean> {
     @Override
     public Boolean call(String s) throws Exception {
         boolean result = s.contains(words);
-//        if (result) {
-//            logger.info(s);
-//        }
+        if (result) {
+            logger.info(s);
+        }
         return result;
     }
 }
